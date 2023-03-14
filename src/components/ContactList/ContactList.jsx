@@ -6,8 +6,6 @@ export const ContactList = ({ contacts, filter, deleteContact }) => {
   const filterContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
-  console.log('🚀 ~ filterContacts:', filterContacts);
-  console.log('🚀 ~ filterContacts:', filterContacts !== []);
 
   return (
     <ul>
