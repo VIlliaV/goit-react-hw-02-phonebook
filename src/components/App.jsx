@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import { Component } from 'react';
 
 import { Container } from './App.styled';
@@ -14,35 +13,25 @@ export class App extends Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
   changeHandler = ({ target: { value, name } }) => {
     this.setState({ [name]: value });
   };
 
-  addNewUser = e => {
-    e.preventDefault();
-    const { contacts, name, number } = this.state;
-
+  updateContacts = newUser => {
+    const { name } = newUser;
+    const { contacts } = this.state;
     if (contacts.find(option => option.name === name)) {
       alert(`${name} already in contact`);
       return;
     }
-    const newUser = {
-      id: nanoid(),
-      name,
-      number,
-    };
 
     this.setState(prevState => {
       return { contacts: [...prevState.contacts, newUser] };
     });
-    e.target.reset();
   };
   deleteContact = id => {
-    console.log('id :>> ', id);
     this.setState(prevState => {
       return {
         contacts: prevState.contacts.filter(contact => contact.id !== id),
@@ -55,7 +44,7 @@ export class App extends Component {
       <Container>
         <h1>Phonebook</h1>
         <ContactForm
-          addNewUser={this.addNewUser}
+          updateContacts={this.updateContacts}
           changeHandler={this.changeHandler}
         />
         <h2>Contacts</h2>
