@@ -2,13 +2,16 @@ import styled from 'styled-components';
 
 export const Item = styled.li`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   margin-bottom: 5px;
   font-size: 16px;
-
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  &.delete {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
   & p {
     margin: 0px 10px 5px;
-    /* font-weight: 500; */
   }
   & .name {
     font-size: 18px;

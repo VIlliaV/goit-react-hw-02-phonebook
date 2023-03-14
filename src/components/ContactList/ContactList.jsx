@@ -6,10 +6,16 @@ export const ContactList = ({ contacts, filter, deleteContact }) => {
   const filterContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filter.toLowerCase())
   );
+  console.log('🚀 ~ filterContacts:', filterContacts);
+  console.log('🚀 ~ filterContacts:', filterContacts !== []);
 
   return (
     <ul>
-      <ContactItem contacts={filterContacts} deleteContact={deleteContact} />
+      {filterContacts.length !== 0 ? (
+        <ContactItem contacts={filterContacts} deleteContact={deleteContact} />
+      ) : (
+        <p>Please add contact</p>
+      )}
     </ul>
   );
 };

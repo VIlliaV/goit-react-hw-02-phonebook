@@ -14,6 +14,7 @@ export const Container = styled.div`
     height: 34px;
     width: 150px;
     margin: 0 auto;
+    padding: 5px;
 
     animation-name: myAnimation;
     animation-duration: 10s;
