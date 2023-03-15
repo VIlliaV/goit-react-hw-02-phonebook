@@ -8,27 +8,28 @@ export class ContactItem extends Component {
   };
   deleteItem = id => {
     this.setState({ del: id });
+    setTimeout(() => {
+      this.props.deleteContact(id);
+    }, 300);
   };
 
   render() {
-    const contacts = this.props.contacts;
+    const { id, name, number } = this.props.contact;
+    const delId = this.state.del;
 
-    return contacts.map(({ id, name, number }) => (
-      <Item key={id} className={id === this.state.del ? 'delete' : ''}>
+    return (
+      <Item className={id === delId ? 'delete' : ''}>
         <span></span>
         <p className="name">{name}: </p>
         <p> {number}</p>
         <button
           onClick={() => {
             this.deleteItem(id);
-            setTimeout(() => {
-              this.props.deleteContact(id);
-            }, 300);
           }}
         >
           Delete
         </button>
       </Item>
-    ));
+    );
   }
 }

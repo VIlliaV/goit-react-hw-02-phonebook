@@ -23,13 +23,13 @@ export class App extends Component {
     const { name } = newUser;
     const { contacts } = this.state;
     if (contacts.find(option => option.name === name)) {
-      alert(`${name} already in contact`);
-      return;
+      return false;
     }
 
     this.setState(prevState => {
       return { contacts: [...prevState.contacts, newUser] };
     });
+    return true;
   };
   deleteContact = id => {
     this.setState(prevState => {
@@ -39,19 +39,22 @@ export class App extends Component {
     });
   };
 
+  filterContacts = () => {
+    return this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    );
+  };
+
   render() {
+    const filteredContacts = this.filterContacts();
     return (
       <Container>
         <h1>Phonebook</h1>
-        <ContactForm
-          updateContacts={this.updateContacts}
-          changeHandler={this.changeHandler}
-        />
+        <ContactForm updateContacts={this.updateContacts} />
         <h2>Contacts</h2>
         <Filter changeHandler={this.changeHandler} />
         <ContactList
-          contacts={this.state.contacts}
-          filter={this.state.filter}
+          filteredContacts={filteredContacts}
           deleteContact={this.deleteContact}
         />
       </Container>
