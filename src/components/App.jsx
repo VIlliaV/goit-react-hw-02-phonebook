@@ -53,10 +53,14 @@ export class App extends Component {
         <ContactForm updateContacts={this.updateContacts} />
         <h2>Contacts</h2>
         <Filter changeHandler={this.changeHandler} />
-        <ContactList
-          filteredContacts={filteredContacts}
-          deleteContact={this.deleteContact}
-        />
+        {filteredContacts.length !== 0 ? (
+          <ContactList
+            filteredContacts={filteredContacts}
+            deleteContact={this.deleteContact}
+          />
+        ) : (
+          <p>Please add contact</p>
+        )}
       </Container>
     );
   }

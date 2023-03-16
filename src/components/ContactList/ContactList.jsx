@@ -5,17 +5,13 @@ import { ContactItem } from '../ContactItem/ContactItem';
 export const ContactList = ({ filteredContacts, deleteContact }) => {
   return (
     <ul>
-      {filteredContacts.length !== 0 ? (
-        filteredContacts.map(({ id, name, number }) => (
-          <ContactItem
-            key={id}
-            contact={{ id, name, number }}
-            deleteContact={deleteContact}
-          />
-        ))
-      ) : (
-        <p>Please add contact</p>
-      )}
+      {filteredContacts.map(({ id, name, number }) => (
+        <ContactItem
+          key={id}
+          contact={{ id, name, number }}
+          deleteContact={deleteContact}
+        />
+      ))}
     </ul>
   );
 };
